@@ -82,6 +82,7 @@ else
 return y+1;
 } 
 
+
 //main
 void main(){
 int n,m;
@@ -93,6 +94,9 @@ displayPre(root);
 printf("In-Order\n");
 displayIn(root);
 
-n=heightTree(root);
-printf("Height Of Tree is : %d\n",n);
+n=heightTree(root->left)-heightTree(root->right);
+if(abs(n)<=1)
+printf("Tree is : Balanced Tree\n");
+else
+printf("Tree is : Not Balanced Tree\n");
 }

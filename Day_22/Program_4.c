@@ -18,22 +18,6 @@ new->right=NULL;
 return new;
 }
 
-//Create Tree
-node* createTree(node* root){
-int n;
-printf("Enter data for Node : ");
-scanf("%d",&n);
-if(n==-1){
-return NULL;
-}
-root=createNode(n);
-printf("For left of %d :\n",n);
-root->left=createTree(root->left);
-printf("For right of %d :\n",n);
-root->right=createTree(root->right);
-
-return root;
-}
 
 //Display Post
 void displayPost(node* ptr){
@@ -82,10 +66,38 @@ else
 return y+1;
 } 
 
+//Binary Search Tree
+node* binarySearch(node* root,int num){
+if(root==NULL){
+node* new=createNode(num);
+return new;
+
+}
+
+if(num<root->data){
+root->left=binarySearch(root->left,num);
+}
+else if(num>root->data){
+root->right=binarySearch(root->right,num);
+}
+else
+printf("input is not valid.\n");
+
+return root;
+
+}
+
 //main
 void main(){
 int n,m;
-root=createTree(root);
+
+while(n!=-1){
+printf("Enter the data : ");
+scanf("%d",&n);
+if(n!=-1)
+root=binarySearch(root,n);
+}
+//root=createTree(root);
 printf("Post-Order\n");
 displayPost(root);
 printf("Pre-Order\n");
@@ -93,6 +105,4 @@ displayPre(root);
 printf("In-Order\n");
 displayIn(root);
 
-n=heightTree(root);
-printf("Height Of Tree is : %d\n",n);
 }

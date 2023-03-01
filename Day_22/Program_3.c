@@ -82,6 +82,20 @@ else
 return y+1;
 } 
 
+//swap tree
+node* swapTree(node* root){
+node* temp;
+if(root==NULL){
+return NULL;
+}
+root->left=swapTree(root->left);
+root->right=swapTree(root->right);
+temp=root->left;
+root->left=root->right;
+root->right=temp;
+return root;
+}
+
 //main
 void main(){
 int n,m;
@@ -93,6 +107,7 @@ displayPre(root);
 printf("In-Order\n");
 displayIn(root);
 
-n=heightTree(root);
-printf("Height Of Tree is : %d\n",n);
+swapTree(root);
+printf("Post-Order\n");
+displayPost(root);
 }
